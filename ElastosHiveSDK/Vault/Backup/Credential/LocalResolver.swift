@@ -25,8 +25,8 @@ import ObjectMapper
 
 public class LocalResolver: CodeFetcher {
 
-    private var _serviceEndpoint: ServiceEndpoint?
-    private var _nextResolver: CodeFetcher?
+    private var _serviceEndpoint: ServiceEndpoint
+    private var _nextResolver: CodeFetcher
     
     public init(_ serviceEndpoint: ServiceEndpoint, _ next: CodeFetcher) {
         _serviceEndpoint = serviceEndpoint
@@ -36,7 +36,7 @@ public class LocalResolver: CodeFetcher {
     /// Fetch the code.
     /// - Returns: The code.
     public func fetch() throws -> String? {
-        return try self._nextResolver?.fetch()
+        return try self._nextResolver.fetch()
     }
     
     public func invalidate() throws {
